@@ -143,10 +143,10 @@ public final data class Product(val name: String, val imageResId: Int, val price
 fun getProductList(): List<Product> {
     return listOf(
         Product("Pupuk Latera", R.drawable.produk_pupuklatera, "Rp 110.000"),
-        Product("Pupuk BAR", R.drawable.produk_pupukbar, "Rp 200.000"),
-        Product("Pupuk Organic Way", R.drawable.produk_pupukorganik, "Rp 120.000"),
-        Product("Cangkul Roda", R.drawable.produk_cangkulroda, "Rp 100.000"),
-        Product("Gunting Tanaman", R.drawable.produk_guntingtanaman, "Rp 90.000"),
-        Product("Set Gardening", R.drawable.produk_setgardening, "Rp 100.000")
+        Product("Pupuk BAR", R.drawable.produk_pupukbar, "Rp 110.000"),
+        Product("Pupuk Organic Way", R.drawable.produk_pupukorganik, "Rp 110.000"),
+        Product("Cangkul Roda", R.drawable.produk_cangkulroda, "Rp 110.000"),
+        Product("Gunting Tanaman", R.drawable.produk_guntingtanaman, "Rp 110.000"),
+        Product("Set Gardening", R.drawable.produk_setgardening, "Rp 110.000")
     )
 }

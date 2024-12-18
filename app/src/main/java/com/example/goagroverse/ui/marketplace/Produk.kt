@@ -30,7 +30,7 @@ fun ProdukScreen(
     productImageResId: Int = R.drawable.produk_pupuklatera,
     productPrice: String = "Rp 110.000"
 ) {
-    var quantity by remember { mutableStateOf(2) }
+    var quantity by remember { mutableStateOf(1) }
     var selectedVariant by remember { mutableStateOf("Oren") }
     var note by remember { mutableStateOf("") }
 

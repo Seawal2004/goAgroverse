@@ -24,7 +24,7 @@ fun PembayaranScreen(
     productPrice: String = "",
     navController: NavController
 ) {
-    var quantity by remember { mutableStateOf(2) }
+    var quantity by remember { mutableStateOf(1) }
     val greenColor = Color(0xFF4CAF50) // Hijau sesuai desain
 
     Scaffold(
@@ -94,11 +94,11 @@ fun PembayaranScreen(
                             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
                         )
                         Text(
-                            text = "Set Gardening Alat Berkebun isi 5 pcs.",
+                            text = "Pupuk Latera.",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Text(
-                            text = "Rp 210.000",
+                            text = "Rp 110.000",
                             style = MaterialTheme.typography.headlineSmall.copy(color = Color.Black)
                         )
                     }
@@ -144,12 +144,12 @@ fun PembayaranScreen(
                     .padding(8.dp)
             ) {
                 Text(
-                    text = "Subtotal    1 produk",
+                    text = "Subtotal 1 produk",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.fillMaxWidth()
                 )
                 Text(
-                    text = "Rp 210.000",
+                    text = "Rp 110.000",
                     style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                     modifier = Modifier.align(Alignment.End)
                 )
@@ -233,7 +233,7 @@ fun PembayaranScreen(
                 ) {
                     Text(text = "Total", style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold))
                     Text(
-                        text = "Rp 210.000",
+                        text = "Rp 110.000",
                         style = MaterialTheme.typography.headlineSmall.copy(color = Color.Black)
                     )
                 }

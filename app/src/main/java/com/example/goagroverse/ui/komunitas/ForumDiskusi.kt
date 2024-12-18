@@ -36,14 +36,13 @@ fun ForumDiskusiScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp), // Menambahkan padding bawah
-            contentAlignment = Alignment.Center // Memastikan teks berada di tengah
+                .padding(bottom = 8.dp),
+            contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "AgroVerse",
                 style = TextStyle(
-                    fontSize = 18.sp, // Ukuran teks yang lebih besar agar terlihat lebih jelas
-//                    fontFamily = FontFamily(Font(R.font.radley)),
+                    fontSize = 18.sp,
                     fontWeight = FontWeight(400),
                     color = Color(0xFF269D26),
                     textAlign = TextAlign.Center
@@ -53,32 +52,31 @@ fun ForumDiskusiScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Welcome Message
+
         Text(
             text = "Hallo, Syawal",
             style = TextStyle(
                 fontSize = 15.sp,
-//                fontFamily = FontFamily(Font(R.font.poppins_regular)),
+//
                 fontWeight = FontWeight(500),
                 color = Color(0xFF303030)
             ),
             modifier = Modifier
-                .fillMaxWidth() // Menambahkan agar teks berada di tengah
-                .padding(bottom = 16.dp) // Jarak ke elemen berikutnya
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
         )
 
         // Post input field
         Box(
             modifier = Modifier
                 .border(1.dp, Color(0xFF269D26), RoundedCornerShape(10.dp))
-                .fillMaxWidth() // Menggunakan fillMaxWidth agar mengikuti layar
+                .fillMaxWidth()
                 .height(91.dp)
         ) {
             Text(
                 text = "Tulis postingan...",
                 style = TextStyle(
                     fontSize = 13.sp,
-//                    fontFamily = FontFamily(Font(R.font.poppins_regular)),
                     fontWeight = FontWeight(400),
                     color = Color(0xFF303030),
                 ),
@@ -94,24 +92,23 @@ fun ForumDiskusiScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(),
-            contentAlignment = Alignment.CenterEnd // Memastikan tombol ada di kanan bawah
+            contentAlignment = Alignment.CenterEnd
         ) {
             Button(
                 onClick = { /* TODO: Tambahkan aksi */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF269D26)),
                 modifier = Modifier
-                    .padding(end = 8.dp) // Jarak dari kanan layar
-                    .size(width = 80.dp, height = 40.dp) // Ukuran tombol diperbesar
+                    .padding(end = 8.dp)
+                    .size(width = 80.dp, height = 45.dp)
             ) {
                 Text(
                     text = "Kirim",
                     style = TextStyle(
-                        fontSize = 14.sp, // Sedikit diperbesar untuk keterbacaan
-//                        fontFamily = FontFamily(Font(R.font.poppins_bold)),
+                        fontSize = 13.sp,
                         fontWeight = FontWeight(500),
-                        color = Color.White // Warna teks kontras untuk keterbacaan
+                        color = Color.White
                     ),
-                    textAlign = TextAlign.Center // Memastikan teks berada di tengah
+                    textAlign = TextAlign.Center
                 )
             }
         }

@@ -1,60 +1,95 @@
 package com.example.goagroverse.ui.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.goagroverse.R
 
 @Composable
-fun DashboardScreen(
-    navController: NavController,
-    modifier: Modifier = Modifier
-) {
+fun DashboardScreen(navController: NavController) {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Top
+            .background(Color.White)
     ) {
-        // Header AgroVerse
+        HeaderSection(navController)
+        SearchBar()
+        Spacer(modifier = Modifier.height(4.dp))
+        BannerSection()
+        Spacer(modifier = Modifier.height(4.dp))
+
+        SectionTitle(title = "Direkomendasikan untuk Anda", subtitle = "Edukasi", seeMoreAction = { })
+        Spacer(modifier = Modifier.height(4.dp))
+        LazyRow(
+            modifier = Modifier.padding(2.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(getRecommendedPlants()) { plant ->
+                ProductItem(plant.name, plant.imageResId, "Rp 80.000")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(2.dp))
+
+        SectionTitle(title = "", subtitle = "Pemasaran", seeMoreAction = { })
+        Spacer(modifier = Modifier.height(4.dp))
+        LazyRow(
+            modifier = Modifier.padding(2.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(getToolsAndSupplies()) { tool ->
+                ProductItem(tool.name, tool.imageResId, "Rp 110.000")
+            }
+        }
+    }
+}
+
+@Composable
+fun HeaderSection(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "AgroVerse",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF4CAF50)
+        )
+        Spacer(modifier = Modifier.height(2.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "AgroVerse",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF4CAF50)
-            )
-        }
-
-        // Header: Hallo dan Keranjang
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+                .padding(top = 2.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Hallo Syawal",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.SemiBold
+                text = "Hallo",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold
             )
             IconButton(onClick = { navController.navigate("keranjang") }) {
                 Icon(
@@ -64,87 +99,126 @@ fun DashboardScreen(
                 )
             }
         }
+    }
+}
 
-        // Banner
-        Image(
-            painter = painterResource(id = R.drawable.banner), // Pastikan resource tersedia
-            contentDescription = "Dashboard Banner",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp)
-        )
+@Composable
+fun SearchBar() {
+    OutlinedTextField(
+        value = "",
+        onValueChange = {},
+        placeholder = { Text("Pencarian") },
+        leadingIcon = {
+            Icon(Icons.Default.Search, contentDescription = "Search")
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 4.dp),
+        shape = RoundedCornerShape(12.dp)
+    )
+}
 
-        // Teks "Direkomendasikan untuk Anda"
-        Text(
-            text = "Direkomendasikan untuk Anda",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
-        )
+@Composable
+fun BannerSection() {
+    Image(
+        painter = painterResource(id = R.drawable.banner),
+        contentDescription = "Promotional Banner",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(165.dp)
+            .padding(4.dp)
+    )
+}
 
-        Spacer(modifier = Modifier.height(4.dp))
-
-        // Penataan LazyRow
-        LazyRow(modifier = Modifier.padding(vertical = 8.dp)) {
-            items(getRecommendedPlants()) { plant ->
-                PlantItem(plantName = plant.name, imageId = plant.imageResId)
+@Composable
+fun SectionTitle(title: String, subtitle: String, seeMoreAction: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            if (title.isNotEmpty()) {
+                Text(
+                    text = title,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(4.dp))
             }
+            Text(
+                text = subtitle,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.Gray
+            )
         }
-
-        LazyRow(modifier = Modifier.padding(vertical = 8.dp)) {
-            items(getRecommendedPlants()) { plant ->
-                PlantItem(plantName = plant.name, imageId = plant.imageResId)
-            }
+        TextButton(onClick = seeMoreAction) {
+            Text(
+                text = "Selengkapnya",
+                color = Color(0xFF4CAF50)
+            )
         }
     }
 }
 
 @Composable
-fun PlantItem(plantName: String, imageId: Int) {
+fun ProductItem(name: String, imageId: Int, price: String) {
     Card(
-        shape = MaterialTheme.shapes.medium,
         modifier = Modifier
-            .padding(horizontal = 8.dp, vertical = 4.dp)
-            .width(140.dp),
-//        elevation = 4.dp
+            .width(120.dp)
+            .shadow(2.dp, RoundedCornerShape(8.dp)),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
+            modifier = Modifier.padding(8.dp)
         ) {
             Image(
                 painter = painterResource(id = imageId),
-                contentDescription = "Plant Image",
+                contentDescription = name,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(110.dp)
-                    .padding(8.dp)
+                    .height(75.dp)
+                    .fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = name, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = price, fontSize = 10.sp, color = Color.Gray)
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = plantName,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(top = 4.dp)
+                text = "+Keranjang",
+                fontSize = 10.sp,
+                modifier = Modifier
+                    .clickable { /* Tambah ke keranjang */ },
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
             )
         }
     }
 }
 
+// Data
+data class Product(val name: String, val imageResId: Int)
 
-
-data class Plant(val name: String, val imageResId: Int)
-
-fun getRecommendedPlants(): List<Plant> {
+fun getRecommendedPlants(): List<Product> {
     return listOf(
-        Plant("Matahari", R.drawable.bunga_matahari),
-        Plant("Daisy", R.drawable.bunga_daisy),
-        Plant("Anggrek", R.drawable.bunga_anggrek),
-        Plant("Aglonema", R.drawable.bunga_aglonema),
-        Plant("Lidah Mertua", R.drawable.bunga_lidshmertus),
-        Plant("Peace Lily", R.drawable.bunga_peacelily)
+        Product("Anggrek", R.drawable.bunga_anggrek),
+        Product("Aglonema", R.drawable.bunga_aglonema),
+        Product("Kaktus", R.drawable.batang_kaktus),
+        Product("Suplir", R.drawable.daun_suplir)
+    )
+}
+
+fun getToolsAndSupplies(): List<Product> {
+    return listOf(
+        Product("Pupuk Latera", R.drawable.produk_pupuklatera),
+        Product("Guntingan Tanaman", R.drawable.produk_guntingtanaman),
+        Product("Cangkul Roda", R.drawable.produk_cangkulroda),
+        Product("Set Gardening", R.drawable.produk_setgardening)
     )
 }

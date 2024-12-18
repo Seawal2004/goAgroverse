@@ -27,7 +27,14 @@ fun EdukasiBunga(navController: NavHostController) {
     val flowers = listOf(
         Pair("Anggrek", R.drawable.bunga_anggrek),
         Pair("Kirisan", R.drawable.bunga_kirisan),
-        Pair("Kertas", R.drawable.bunga_kertas)
+        Pair("Kertas", R.drawable.bunga_kertas),
+        Pair("Aglonema", R.drawable.bunga_aglonema),
+        Pair("Matahari", R.drawable.bunga_matahari),
+        Pair("Peacelily", R.drawable.bunga_peacelily),
+        Pair("Daisy", R.drawable.bunga_daisy),
+        Pair("Lidah mertua", R.drawable.bunga_lidshmertus),
+        Pair("Melati", R.drawable.bunga_melati)
+
     )
 
     var searchQuery by remember { mutableStateOf("") }

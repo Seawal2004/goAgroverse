@@ -109,11 +109,11 @@ fun NotaPembayaran(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 TransactionDetailRow(
-                    label = "Alat Berkebun (Set Gardening isi 5 pcs)",
-                    value = "Rp 210.000"
+                    label = "Pupuk Latera",
+                    value = "Rp 110.000"
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                TransactionDetailRow(label = "Total", value = "Rp 210.000", isBold = true)
+                TransactionDetailRow(label = "Total", value = "Rp 110.000", isBold = true)
             }
 
             Spacer(modifier = Modifier.height(32.dp))
