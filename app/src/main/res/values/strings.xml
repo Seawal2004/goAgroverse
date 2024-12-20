@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">goAgroverse</string>
+
+    <string name="menu_dashboard">Beranda</string>
+    <string name="menu_edukasi">Edukasi</string>
+    <string name="menu_market">Market</string>
+    <string name="menu_komunitas">Komunitas</string>
+    <string name="menu_setting">Setting</string>
+
+</resources>
