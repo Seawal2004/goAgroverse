@@ -222,3 +222,4 @@ fun getToolsAndSupplies(): List<Product> {
         Product("Set Gardening", R.drawable.produk_setgardening)
     )
 }
+// kak klw baca tulisan ini dari syawal yang selalu di buly sama firnanda permata sari dari tim agroverse  mobile dvelopment
